@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://db.onlinewebfonts.com/c/8d223b3ad8d4819e9dcf22757e4cc2c4?family=Arial');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+.invoice-container {
+    width: 100%;
+    padding: 40px;
+    background: #ffffff;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.company-info {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.company-info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #0b7abe;
+}
+
+.company-info p {
+    margin: 5px 0;
+}
+
+.client-info {
+    text-align: right;
+}
+
+.client-info p {
+    margin: 5px 0;
+}
+
+.invoice-body {
+    margin-bottom: 20px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.invoice-table, th, td {
+    border: 1px solid #ddd;
+}
+
+.invoice-table th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+.invoice-table th {
+    background-color: #0b7abe;
+    color: #ffffff;
+}
+
+.invoice-footer {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.signature-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.signature-section p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.signature-section span {
+    margin-top: 50px;
+    display: inline-block;
+    border-top: 1px solid #000;
+    width: 200px;
+}
+
+.footer-logo {
+    max-width: 400px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-img {
+    width: 100%;
+    height: auto;
+}
+
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.print-btn, .close-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.print-btn:hover, .close-btn:hover {
+    background-color: #45a049;
+}
+
+.close-btn {
+    background-color: #f44336;
+}
+
+.close-btn:hover {
+    background-color: #e53935;
+}
+
+.company-logo {
+    width: 120px;
+    max-width: 120px;
+    height: auto;
+}
