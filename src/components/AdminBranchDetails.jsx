@@ -153,7 +153,7 @@ const AdminBranchDetails = () => {
             await axios.delete(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}`);
             alert("Branch removed successfully!");
             setShowRemoveBranchModal(false);
-            window.location.href = "/branches"; // Redirect to branches list
+            window.location.href = "/admin/branches";
         } catch (error) {
             console.error("Error removing branch:", error);
             alert("Failed to remove branch.");
