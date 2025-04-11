@@ -11,7 +11,7 @@ const LoginPage = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const urlBackend = import.meta.env.VITE_API_URL;
+    const urlBackend = process.env.REACT_APP_API_URL;
 
     // ✅ Redirect logged-in users to the dashboard
     useEffect(() => {
