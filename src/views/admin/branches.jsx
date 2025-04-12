@@ -100,25 +100,30 @@ const Branches = () => {
 
             {/* Branch Cards */}
             <div className="grid grid-cols-4 gap-6">
-                {branches.map((branch) => (
-                    <div
-                        key={branch._id}
-                        className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
-                        onClick={() => navigate(`/admin/branches/${branch._id}`)}
-                    >
-                        <img
-                            src={`${process.env.REACT_APP_URL_BACKEND}/public${branch.image}`}
-                            alt={branch.name}
-                            className="h-40 w-full object-cover"
-                        />
-                        <div className="p-4">
-                            <h3 className="text-lg font-bold text-[#274E6B]">{branch.name}</h3>
-                            <p className="text-gray-600 mt-2">{branch.city}</p>
-                            {branch.phoneNumber && <p className="text-gray-500">📞 {branch.phoneNumber}</p>}
+                {branches && branches.length > 0 ? (
+                    branches.map((branch) => (
+                        <div
+                            key={branch._id}
+                            className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+                            onClick={() => navigate(`/admin/branches/${branch._id}`)}
+                        >
+                            <img
+                                src={`${process.env.REACT_APP_URL_BACKEND}/public${branch.image}`}
+                                alt={branch.name}
+                                className="h-40 w-full object-cover"
+                            />
+                            <div className="p-4">
+                                <h3 className="text-lg font-bold text-[#274E6B]">{branch.name}</h3>
+                                <p className="text-gray-600 mt-2">{branch.city}</p>
+                                {branch.phoneNumber && <p className="text-gray-500">📞 {branch.phoneNumber}</p>}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p className="text-gray-600">No branches available.</p>  // Display a message when branches are empty or undefined
+                )}
             </div>
+
 
             {/* Add New Branch Modal */}
             {showModal && (
