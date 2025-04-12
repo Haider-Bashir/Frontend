@@ -144,16 +144,20 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-2 gap-6 mt-6">
                 {/* Applicants by Visa Type */}
                 <div className="bg-white p-6 rounded-md shadow-md">
-                    <h3 className="text-lg font-bold text-[#274E6B]">Applicants by Visa Type</h3>
-                    <ul className="mt-4">
-                        {stats?.applicantsByVisaType.map((item, index) => (
-                            <li key={index} className="text-gray-600">
-                                {item._id}: {item.count}
-                            </li>
-                        ))}
-                    </ul>
+                  <h3 className="text-lg font-bold text-[#274E6B]">Applicants by Visa Type</h3>
+                  <ul className="mt-4">
+                    {Array.isArray(stats?.applicantsByVisaType) && stats?.applicantsByVisaType.length > 0 ? (
+                      stats.applicantsByVisaType.map((item, index) => (
+                        <li key={index} className="text-gray-600">
+                          {item._id}: {item.count}
+                        </li>
+                      ))
+                    ) : (
+                      <li className="text-gray-600">No applicants by visa type found.</li>
+                    )}
+                  </ul>
                 </div>
-            </div>
+              </div>
 
 
             {isPopupOpen && (
