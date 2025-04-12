@@ -19,13 +19,21 @@ const Branches = () => {
         fetchBranches();
     }, []);
 
-    // Fetch branches from backend
     const fetchBranches = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches`);
-            setBranches(response.data);
+            console.log("Fetched branches:", response.data);
+    
+            // Ensure the result is an array before setting it
+            if (Array.isArray(response.data)) {
+                setBranches(response.data);
+            } else {
+                console.error("Unexpected data format for branches:", response.data);
+                setBranches([]); // fallback to empty array
+            }
         } catch (error) {
             console.error("Error fetching branches:", error);
+            setBranches([]); // fallback to empty array on error
         }
     };
 
@@ -100,7 +108,7 @@ const Branches = () => {
 
             {/* Branch Cards */}
             <div className="grid grid-cols-4 gap-6">
-                {branches && branches.length > 0 ? (
+                {Array.isArray(branches) && branches.length > 0 ? (
                     branches.map((branch) => (
                         <div
                             key={branch._id}
@@ -115,14 +123,17 @@ const Branches = () => {
                             <div className="p-4">
                                 <h3 className="text-lg font-bold text-[#274E6B]">{branch.name}</h3>
                                 <p className="text-gray-600 mt-2">{branch.city}</p>
-                                {branch.phoneNumber && <p className="text-gray-500">📞 {branch.phoneNumber}</p>}
+                                {branch.phoneNumber && (
+                                    <p className="text-gray-500">📞 {branch.phoneNumber}</p>
+                                )}
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p className="text-gray-600">No branches available.</p>  // Display a message when branches are empty or undefined
+                    <p className="text-gray-600">No branches available.</p>
                 )}
             </div>
+
 
 
             {/* Add New Branch Modal */}
