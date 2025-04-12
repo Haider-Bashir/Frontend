@@ -21,7 +21,7 @@ const SubAdmins = () => {
         // Fetch the list of sub admins
         const fetchSubAdmins = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/sub-admins`);
                 setSubAdmins(response.data);
             } catch (error) {
                 console.error('Error fetching sub admins:', error);
@@ -34,7 +34,7 @@ const SubAdmins = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/sub-admins/${id}`);
             setSubAdmins(subAdmins.filter(subAdmin => subAdmin._id !== id)); // Remove from state
             alert('Sub Admin deleted successfully');
         } catch (error) {
@@ -79,11 +79,11 @@ const SubAdmins = () => {
 
         try {
             // Create a new sub admin via API
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins`, newSubAdmin);
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/sub-admins`, newSubAdmin);
             setShowAddModal(false);  // Close modal on success
             alert('Sub Admin added successfully');
             // Re-fetch the sub admins list
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/sub-admins`);
             setSubAdmins(response.data);
         } catch (error) {
             console.error('Error adding sub admin:', error);
@@ -96,11 +96,11 @@ const SubAdmins = () => {
 
         try {
             // Update the sub admin via API
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins/${editingSubAdmin._id}`, newSubAdmin);
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/sub-admins/${editingSubAdmin._id}`, newSubAdmin);
             setShowEditModal(false);  // Close modal on success
             alert('Sub Admin updated successfully');
             // Re-fetch the sub admins list
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/sub-admins`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/sub-admins`);
             setSubAdmins(response.data);
         } catch (error) {
             console.error('Error updating sub admin:', error);

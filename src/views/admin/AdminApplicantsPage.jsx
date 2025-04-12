@@ -27,13 +27,13 @@ const AdminApplicantsPage = () => {
         try {
             setLoading(true);
             const token = localStorage.getItem("token");
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             // Fetch branches based on branchId and attach the branch name to each applicant
-            const branchIds = [...new Set(response.data.map(a => a?.branchId))]; // Collect unique branchIds
-            const branchNamesResponse = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches`, {
+            const branchIds = Array.isArray(response.data) && [...new Set(response.data.map(a => a?.branchId))]; // Collect unique branchIds
+            const branchNamesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches`, {
                 params: { branchIds: branchIds }, // Assuming backend can accept and return multiple branch names
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -119,7 +119,7 @@ const AdminApplicantsPage = () => {
                         className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none cursor-pointer"
                     >
                         <option value="">Filter by Country</option>
-                        {[...new Set(applicants.map((a) => a.futureEducationDetails?.country).filter(Boolean))].map((country, index) => (
+                        {Array.isArray(applicants) && applicants.length > 0 && [...new Set(applicants.map((a) => a.futureEducationDetails?.country).filter(Boolean))].map((country, index) => (
                             <option key={index} value={country}>{country}</option>
                         ))}
                     </select>

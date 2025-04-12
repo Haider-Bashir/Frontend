@@ -59,7 +59,7 @@ const Profile = () => {
 
             // Send PUT request to update profile
             const response = await axios.post(
-                `${process.env.REACT_APP_URL_BACKEND}/api/users/${userData.id}`, // Correct endpoint for profile update
+                `${process.env.REACT_APP_API_URL}/api/users/${userData.id}`, // Correct endpoint for profile update
                 formData,
                 {
                     headers: {
@@ -117,7 +117,7 @@ const Profile = () => {
                         <div className="flex items-center space-x-4">
                             {/* Profile Image */}
                             <img
-                                src={formData.profilePicture || `${process.env.REACT_APP_URL_BACKEND}/public/images/usr-dmy.jpg`}
+                                src={formData.profilePicture || `${process.env.REACT_APP_API_URL}/public/images/usr-dmy.jpg`}
                                 alt="User Avatar"
                                 className="h-24 w-24 rounded-full object-cover border border-[#274E6B]"
                             />

@@ -32,7 +32,7 @@ const Managers = () => {
     // Fetch all managers
     const fetchManagers = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/users?role=manager`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users?role=manager`);
             setManagers(response.data);
         } catch (error) {
             console.error("Error fetching managers:", error);
@@ -42,7 +42,7 @@ const Managers = () => {
     // Fetch all branches to find manager assignments
     const fetchBranches = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches`);
             const branchMap = {};
             const branchNamesMap = {};
             response.data.forEach((branch) => {
@@ -77,7 +77,7 @@ const Managers = () => {
 
                 // Add the token to the headers of the DELETE request
                 const response = await axios.delete(
-                    `${process.env.REACT_APP_URL_BACKEND}/api/users/${manager._id}`,
+                    `${process.env.REACT_APP_API_URL}/api/users/${manager._id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`, // Pass the token here
@@ -104,7 +104,7 @@ const Managers = () => {
                 return;
             }
 
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${branchId}/removeManager`);
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/branches/${branchId}/removeManager`);
             fetchManagers();
             fetchBranches();
             alert("Manager unassigned from the branch.");
@@ -126,7 +126,7 @@ const Managers = () => {
             if (password !== confirmPassword) validationErrors.confirmPassword = "Passwords do not match";
             if (!city) validationErrors.city = "City is required";
 
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/users/registerManager`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/users/registerManager`, {
                 firstName,
                 lastName,
                 email,
@@ -187,51 +187,63 @@ const Managers = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {managers.map((manager) => (
-                    <tr key={manager._id}>
-                        <td className="border border-gray-300 px-4 py-2">
-                            {manager.firstName} {manager.lastName}
-                        </td>
-                        <td className="border border-gray-300 px-4 py-2">{manager.email}</td>
-                        <td className="border border-gray-300 px-4 ">
-                            {passwordVisible[manager._id] ? "Hashed" : "●●●●●●●●"}
-                            <button
-                                onClick={() => togglePasswordVisibility(manager._id)}
-                                className="ml-16 text-gray-500"
-                            >
-                                {passwordVisible[manager._id] ? <FaEyeSlash /> : <FaEye />}
-                            </button>
-                        </td>
-                        <td className="border border-gray-300 px-4 py-2">{manager.phoneNumber || "N/A"}</td>
-                        <td className="border border-gray-300 px-4 py-2">
-                            {branchNamesMap[branches[manager._id]] || "Not Assigned"}
-                        </td>
-                        <td className="border border-gray-300 px-4 py-2">{manager.role || "N/A"}</td>
-                        <td className="border border-gray-300 px-4 py-2 text-center space-x-2">
-                            <button
-                                onClick={() => handleEditManager(manager)}
-                                className="px-4 py-2 bg-[#0B7ABE] text-white rounded-md hover:bg-[#086198]"
-                            >
-                                Edit
-                            </button>
-                            {branches[manager._id] ? (
+                {Array.isArray(managers) && managers.length > 0 ? (
+                    managers.map((manager) => (
+                        <tr key={manager._id}>
+                            <td className="border border-gray-300 px-4 py-2">
+                                {manager.firstName} {manager.lastName}
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">{manager.email}</td>
+                            <td className="border border-gray-300 px-4 ">
+                                {passwordVisible[manager._id] ? "Hashed" : "●●●●●●●●"}
                                 <button
-                                    onClick={() => handleUnassignManager(manager._id)}
-                                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                                    onClick={() => togglePasswordVisibility(manager._id)}
+                                    className="ml-16 text-gray-500"
                                 >
-                                    Unassign
+                                    {passwordVisible[manager._id] ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                            ) : (
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                {manager.phoneNumber || "N/A"}
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                {branchNamesMap[branches[manager._id]] || "Not Assigned"}
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2">
+                                {manager.role || "N/A"}
+                            </td>
+                            <td className="border border-gray-300 px-4 py-2 text-center space-x-2">
                                 <button
-                                    onClick={() => handleDeleteManager(manager)}
-                                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                                    onClick={() => handleEditManager(manager)}
+                                    className="px-4 py-2 bg-[#0B7ABE] text-white rounded-md hover:bg-[#086198]"
                                 >
-                                    Delete
+                                    Edit
                                 </button>
-                            )}
+                                {branches[manager._id] ? (
+                                    <button
+                                        onClick={() => handleUnassignManager(manager._id)}
+                                        className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                                    >
+                                        Unassign
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => handleDeleteManager(manager)}
+                                        className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                                    >
+                                        Delete
+                                    </button>
+                                )}
+                            </td>
+                        </tr>
+                    ))
+                ) : (
+                    <tr>
+                        <td colSpan="7" className="text-center text-gray-500 py-4">
+                            No managers found.
                         </td>
                     </tr>
-                ))}
+                )}
                 </tbody>
             </table>
 
@@ -246,7 +258,7 @@ const Managers = () => {
                                 try {
                                     const token = localStorage.getItem("token");
                                     await axios.put(
-                                        `${process.env.REACT_APP_URL_BACKEND}/api/users/${selectedManager._id}`,
+                                        `${process.env.REACT_APP_API_URL}/api/users/${selectedManager._id}`,
                                         selectedManager,
                                         {
                                             headers: {

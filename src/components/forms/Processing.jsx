@@ -68,7 +68,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
             const currentTime = new Date().toISOString();
 
             // Send status, processingNotes, and other form data
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/processing`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/processing`, {
                 status,
                 processingNotes: notesArray,
                 attestation,
@@ -129,7 +129,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
             setNotesArray(updatedNotes); // Update the notes state to remove the deleted note
 
             // Send a request to the backend to delete the note
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/processing/deleteNote`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/processing/deleteNote`, {
                 noteId: noteId, // Pass the noteId to be deleted
             });
 
@@ -224,7 +224,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
 
                         <a
                             type="button"
-                            href={`${process.env.REACT_APP_URL_BACKEND}/public${offerLetterFilePath}`}
+                            href={`${process.env.REACT_APP_API_URL}/public${offerLetterFilePath}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"
@@ -249,7 +249,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
                             <span>{confirmationInvoiceFileName}</span>
 
                             <a
-                                href={`${process.env.REACT_APP_URL_BACKEND}/public${confirmationInvoiceFilePath}`}
+                                href={`${process.env.REACT_APP_API_URL}/public${confirmationInvoiceFilePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"
@@ -294,7 +294,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
                             <span>{embassyAppointmentFileName}</span>
 
                             <a
-                                href={`${process.env.REACT_APP_URL_BACKEND}/public${embassyAppointmentFilePath}`}
+                                href={`${process.env.REACT_APP_API_URL}/public${embassyAppointmentFilePath}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"

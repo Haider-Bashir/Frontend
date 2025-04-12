@@ -28,7 +28,7 @@ const Dues = ({ prevStep, applicant }) => {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments`);
                 const data = await response.json();
                 setSavedPayments(data); // Store the saved payments in the savedPayments array
             } catch (error) {
@@ -38,7 +38,7 @@ const Dues = ({ prevStep, applicant }) => {
 
         const fetchAgreedAmount = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/agreedAmount`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/agreedAmount`);
                 const data = await response.json();
                 if (data) {
                     setAgreedAmount(data.amount);
@@ -108,7 +108,7 @@ const Dues = ({ prevStep, applicant }) => {
         try {
             // Loop through each new payment and send it individually to the backend
             for (let payment of newPayments) {
-                const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const Dues = ({ prevStep, applicant }) => {
             setShowInvoicePopup(true);  // Show invoice preview popup
 
             // Optionally, you can fetch the saved payments again to update the list (if needed)
-            const savedPaymentsResponse = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments`);
+            const savedPaymentsResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments`);
             const savedPaymentsData = await savedPaymentsResponse.json();
             setSavedPayments(savedPaymentsData);  // Update saved payments if necessary
             setNewPayments('');
@@ -241,7 +241,7 @@ const Dues = ({ prevStep, applicant }) => {
     // Function to handle deleting saved payments from the database
     const handleDeleteSavedPayment = async (paymentId) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments/${paymentId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments/${paymentId}`, {
                 method: "DELETE",
             });
 
@@ -289,7 +289,7 @@ const Dues = ({ prevStep, applicant }) => {
 
     const handleDeleteAllPayments = async (batchId) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments/${batchId}/deleteAll`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments/${batchId}/deleteAll`, {
                 method: "DELETE",
             });
 
@@ -326,7 +326,7 @@ const Dues = ({ prevStep, applicant }) => {
     const handleSaveAgreedAmount = async () => {
         const data = { amount: agreedAmount, currency: agreedCurrency };
         try {
-            const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/agreedAmount`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/agreedAmount`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

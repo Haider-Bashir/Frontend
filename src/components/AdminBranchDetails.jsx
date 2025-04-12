@@ -59,12 +59,12 @@ const AdminBranchDetails = () => {
 
     const fetchBranchDetails = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches/${id}`);
             setBranchDetails(response.data);
 
             if (response.data.managerId) {
                 const managerResponse = await axios.get(
-                    `${process.env.REACT_APP_URL_BACKEND}/api/users/${response.data.managerId}`
+                    `${process.env.REACT_APP_API_URL}/api/users/${response.data.managerId}`
                 );
                 setManagerDetails(managerResponse.data);
             } else {
@@ -77,7 +77,7 @@ const AdminBranchDetails = () => {
 
     const fetchApplicants = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants?branchId=${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants?branchId=${id}`);
             setApplicants(response.data);
         } catch (error) {
             console.error("Error fetching applicants:", error);
@@ -87,7 +87,7 @@ const AdminBranchDetails = () => {
     const fetchFilteredManagers = async (searchTerm) => {
         try {
             const response = await axios.get(
-                `${process.env.REACT_APP_URL_BACKEND}/api/users?role=manager&search=${searchTerm}`
+                `${process.env.REACT_APP_API_URL}/api/users?role=manager&search=${searchTerm}`
             );
             setManagers(response.data);
         } catch (error) {
@@ -98,7 +98,7 @@ const AdminBranchDetails = () => {
     // Fetch the stats for the specific branch
     const fetchBranchStats = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}/stats`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches/${id}/stats`);
             setStats(response.data);
         } catch (error) {
             console.error("Error fetching branch stats:", error);
@@ -136,7 +136,7 @@ const AdminBranchDetails = () => {
         }
 
         try {
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}`, formData, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/branches/${id}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             alert("Branch updated successfully!");
@@ -150,7 +150,7 @@ const AdminBranchDetails = () => {
 
     const handleRemoveBranch = async () => {
         try {
-            await axios.delete(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/branches/${id}`);
             alert("Branch removed successfully!");
             setShowRemoveBranchModal(false);
             window.location.href = "/admin/branches";
@@ -179,7 +179,7 @@ const AdminBranchDetails = () => {
     const handleRemoveManager = async () => {
         try {
             // Unlink the manager from the branch
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}/removeManager`);
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/branches/${id}/removeManager`);
             setManagerDetails(null); // Clear manager details from the state
             alert("Manager removed successfully!");
         } catch (error) {
@@ -205,7 +205,7 @@ const AdminBranchDetails = () => {
             if (password !== confirmPassword) validationErrors.confirmPassword = "Passwords do not match";
             if (!city) validationErrors.city = "City is required";
 
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/users/addManager`, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/users/addManager`, {
                 branchId: id,
                 firstName,
                 lastName,
@@ -231,7 +231,7 @@ const AdminBranchDetails = () => {
 
     const fetchManagers = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/users?role=manager`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users?role=manager`);
             setManagers(response.data); // Update the managers state
         } catch (error) {
             console.error("Error fetching managers:", error);
@@ -240,7 +240,7 @@ const AdminBranchDetails = () => {
 
     const handleAssignManager = async (managerId) => {
         try {
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${id}/assignManager`, { managerId });
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/branches/${id}/assignManager`, { managerId });
             alert("Manager assigned successfully!");
             fetchBranchDetails();
             setShowManagerModal(false);
@@ -285,7 +285,7 @@ const AdminBranchDetails = () => {
                 <div className="flex bg-white p-6 rounded-md shadow-md mb-6">
                     <div className="w-1/3">
                         <img
-                            src={`${process.env.REACT_APP_URL_BACKEND}/public${branchDetails.image}`}
+                            src={`${process.env.REACT_APP_API_URL}/public${branchDetails.image}`}
                             alt={branchDetails.name}
                             className="w-full h-64 object-cover rounded-md"
                         />
@@ -543,7 +543,7 @@ const AdminBranchDetails = () => {
                                 try {
                                     const token = localStorage.getItem("token");
                                     const response = await axios.put(
-                                        `${process.env.REACT_APP_URL_BACKEND}/api/users/${managerDetails._id}`,
+                                        `${process.env.REACT_APP_API_URL}/api/users/${managerDetails._id}`,
                                         {
                                             firstName,
                                             lastName,

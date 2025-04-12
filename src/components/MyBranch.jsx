@@ -25,7 +25,7 @@ const MyBranch = () => {
 
             const managerId = user.id; // Get manager ID
 
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/manager/my-branch`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/manager/my-branch`, {
                 params: { managerId }, // Send managerId as query param
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
@@ -47,7 +47,7 @@ const MyBranch = () => {
     const fetchApplicants = async (branchId) => {
 
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants?branchId=${branchId}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants?branchId=${branchId}`);
             setApplicants(response.data);
         } catch (error) {
             console.error("Error fetching applicants:", error);
@@ -93,7 +93,7 @@ const MyBranch = () => {
                     <div className="flex bg-white p-6 rounded-md shadow-md mb-6">
                         <div className="w-1/3">
                             <img
-                                src={`${process.env.REACT_APP_URL_BACKEND}/public${branchDetails.image}`}
+                                src={`${process.env.REACT_APP_API_URL}/public${branchDetails.image}`}
                                 alt={branchDetails.name}
                                 className="w-full h-64 object-cover rounded-md"
                             />

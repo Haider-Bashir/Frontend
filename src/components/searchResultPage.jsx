@@ -30,7 +30,7 @@ const SearchResultPage = () => {
                 return;
             }
 
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}${endpoint}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}${endpoint}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

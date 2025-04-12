@@ -45,7 +45,7 @@ const NewApplicant = () => {
 
     const fetchApplicant = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${id}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants/${id}`);
             setApplicant(response.data);
         } catch (error) {
             console.error("Error fetching applicant:", error);

@@ -30,7 +30,7 @@ const AdminViewApplicant = () => {
     const fetchApplicant = useCallback(async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${id}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -58,7 +58,7 @@ const AdminViewApplicant = () => {
         if (applicant?._id) {
             const fetchPayments = async () => {
                 try {
-                    const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/payments`);
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/payments`);
                     const data = await response.json();
 
                     // ✅ Check if it's an array before reducing
@@ -78,7 +78,7 @@ const AdminViewApplicant = () => {
 
     const fetchBranch = async (branchId, token) => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches/${branchId}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches/${branchId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -94,7 +94,7 @@ const AdminViewApplicant = () => {
 
     const fetchManager = async (managerId, token) => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/users/${managerId}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${managerId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -278,7 +278,7 @@ const AdminViewApplicant = () => {
                         <h3 className="text-lg font-semibold text-gray-700 mb-2">Profile Picture</h3>
                         {applicant.photo ? (
                             <img
-                                src={`${process.env.REACT_APP_URL_BACKEND}/public${applicant.photo}`}
+                                src={`${process.env.REACT_APP_API_URL}/public${applicant.photo}`}
                                 alt="Applicant"
                                 className="w-40 h-40 object-cover rounded-md border"
                             />
@@ -354,7 +354,7 @@ const AdminViewApplicant = () => {
                             <li key={index} className="flex justify-between border p-2 rounded-md mb-2 bg-[#F3F4F6]">
                                 <span className="text-gray-700 font-bold">{doc.title}</span>
                                 <a
-                                    href={`${process.env.REACT_APP_URL_BACKEND}/public${doc.path}`}
+                                    href={`${process.env.REACT_APP_API_URL}/public${doc.path}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] text-white rounded-md"

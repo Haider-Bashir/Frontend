@@ -29,7 +29,7 @@ const PersonalInfoModal = ({ onClose, onSuccess, id }) => {
         try {
             const user = JSON.parse(localStorage.getItem("user"));
             if (user.role === "manager") {
-                const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/manager/my-branch`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/manager/my-branch`, {
                     params: { managerId: user.id }, // Use the managerId directly
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
                 });
@@ -80,7 +80,7 @@ const PersonalInfoModal = ({ onClose, onSuccess, id }) => {
                 }
             }
 
-            const response = await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/applicants`, formDataToSend, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/applicants`, formDataToSend, {
                 headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
 

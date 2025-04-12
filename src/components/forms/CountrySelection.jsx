@@ -89,7 +89,7 @@ const CountrySelection = ({ applicant, fetchApplicant, nextStep, prevStep }) => 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/education`, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/education`, {
                 futureEducationDetails: formData, // Send as futureEducationDetails
             });
 

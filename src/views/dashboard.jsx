@@ -13,7 +13,7 @@ const ManagerDashboard = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_URL_BACKEND}/api/stats`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/stats`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,  // Add token in the Authorization header

@@ -32,7 +32,7 @@ const Documents = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
             formData.append("title", documentTitle);
 
             await axios.post(
-                `${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/documents`,
+                `${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/documents`,
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
@@ -54,7 +54,7 @@ const Documents = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
         if (!window.confirm("Are you sure you want to delete this document?")) return;
 
         try {
-            await axios.delete(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}/documents/${docId}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}/documents/${docId}`);
             alert("Document deleted successfully!");
             fetchApplicant(); // Refresh applicant data
         } catch (error) {
@@ -76,7 +76,7 @@ const Documents = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
                         <li key={index} className="flex justify-between items-center border p-2 rounded-md mb-2 bg-[#F3F4F6]">
                             <span className="text-gray-700 font-bold">{ index+1 + ' - ' + doc.title || `Document ${index + 1}`}</span>
                             <div className="flex gap-2">
-                                <a href={`${process.env.REACT_APP_URL_BACKEND}/public${doc.path}`}
+                                <a href={`${process.env.REACT_APP_API_URL}/public${doc.path}`}
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md">

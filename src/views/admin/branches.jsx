@@ -21,7 +21,7 @@ const Branches = () => {
 
     const fetchBranches = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/branches`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/branches`);
             console.log("Fetched branches:", response.data);
     
             // Ensure the result is an array before setting it
@@ -68,7 +68,7 @@ const Branches = () => {
         formData.append("image", newBranch.image);
 
         try {
-            await axios.post(`${process.env.REACT_APP_URL_BACKEND}/api/branches`, formData, {
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/branches`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
@@ -116,7 +116,7 @@ const Branches = () => {
                             onClick={() => navigate(`/admin/branches/${branch._id}`)}
                         >
                             <img
-                                src={`${process.env.REACT_APP_URL_BACKEND}/public${branch.image}`}
+                                src={`${process.env.REACT_APP_API_URL}/public${branch.image}`}
                                 alt={branch.name}
                                 className="h-40 w-full object-cover"
                             />

@@ -22,7 +22,7 @@ const AdminDashboard = () => {
         const fetchStats = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/stats/admin`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/stats/admin`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     const fetchRevenueData = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/stats/branch-per-currency`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/stats/branch-per-currency`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

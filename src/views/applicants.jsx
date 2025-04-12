@@ -35,7 +35,7 @@ const MyApplicants = () => {
 
             const managerId = user.id; // Get manager ID
 
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/manager/my-branch`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/manager/my-branch`, {
                 params: { managerId }, // Send managerId as query param
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
@@ -56,7 +56,7 @@ const MyApplicants = () => {
 
     const fetchApplicants = async (branchId) => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL_BACKEND}/api/applicants?branchId=${branchId}`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/applicants?branchId=${branchId}`);
             setApplicants(response.data);
         } catch (error) {
             console.error("Error fetching applicants:", error);

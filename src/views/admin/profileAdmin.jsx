@@ -38,7 +38,7 @@ const ProfileAdmin = () => {
                     <div className="space-y-4">
                         <div className="flex items-center space-x-4">
                             <img
-                                src={`${process.env.REACT_APP_URL_BACKEND}/public/images/usr-dmy.jpg`}
+                                src={`${process.env.REACT_APP_API_URL}/public/images/usr-dmy.jpg`}
                                 alt="User Avatar"
                                 className="h-24 w-24 rounded-full object-cover border"
                             />

@@ -33,7 +33,7 @@ const PersonalInfo = ({ applicant, fetchApplicant }) => {
             });
 
             if (applicant.photo) {
-                setPreviewImage(`${process.env.REACT_APP_URL_BACKEND}/public${applicant.photo}`);
+                setPreviewImage(`${process.env.REACT_APP_API_URL}/public${applicant.photo}`);
             }
         }
     }, [applicant]);
@@ -82,7 +82,7 @@ const PersonalInfo = ({ applicant, fetchApplicant }) => {
             //     console.log(pair[0] + ': ' + pair[1]);
             // }
 
-            await axios.put(`${process.env.REACT_APP_URL_BACKEND}/api/applicants/${applicant._id}`, formDataToSend, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}`, formDataToSend, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 
