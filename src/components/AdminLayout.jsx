@@ -160,7 +160,7 @@ const Layout = ({ children }) => {
                     {/* User Icon */}
                     <div className="relative" ref={dropdownRef}>
                         <img
-                            src={`${process.env.REACT_APP_API_URL}/public/images/usr-dmy.jpg`}
+                            src={`/usr-dmy.jpg`}
                             alt="User Avatar"
                             className="h-16 w-16 cursor-pointer rounded-full object-cover border"
                             onClick={() => setShowDropdown(!showDropdown)}
