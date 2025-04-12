@@ -99,7 +99,7 @@ const AdminDashboard = () => {
                     <div className="bg-white p-6 rounded-md shadow-md cursor-pointer" onClick={togglePopup}>
                         <h3 className="text-lg font-bold text-[#274E6B]">Revenue by Currency</h3>
                         <div className="mt-4">
-                            {stats?.paymentsByCurrency && stats.paymentsByCurrency.length > 0 ? (
+                            {stats?.paymentsByCurrency && Array.isArray(stats.paymentsByCurrency) && stats.paymentsByCurrency.length > 0 ? (
                                 stats.paymentsByCurrency.map((item, index) => (
                                     <div key={index} className="text-gray-600">
                                         <strong>{item._id}:</strong> {item.total.toLocaleString()} /-
