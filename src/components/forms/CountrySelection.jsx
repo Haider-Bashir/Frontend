@@ -155,20 +155,29 @@ const CountrySelection = ({ applicant, fetchApplicant, nextStep, prevStep }) => 
                 {formData.city && (
                     <div className="grid grid-cols-3 items-center gap-4">
                         <label htmlFor="institute" className="font-bold text-right">Institute:</label>
-                        <select
+                        <input
+                            type="text"
                             name="institute"
                             value={formData.institute}
+                            placeholder="Institute Name"
                             onChange={handleChange}
+                            className={`col-span-2 px-4 py-2 border rounded-md w-full bg-[#F3F4F6] ${getFieldStyle('course')}`}
                             required
-                            className={`col-span-2 px-4 py-2 border rounded-md cursor-pointer bg-[#F3F4F6] w-full ${getFieldStyle('institute')}`}
-                        >
-                            <option value="">🔍 Search & Select University</option>
-                            {universities.map((uni, index) => (
-                                <option key={index} value={uni} className="cursor-pointer">
-                                    {uni}
-                                </option>
-                            ))}
-                        </select>
+                        />
+                        {/*<select*/}
+                        {/*    name="institute"*/}
+                        {/*    value={formData.institute}*/}
+                        {/*    onChange={handleChange}*/}
+                        {/*    required*/}
+                        {/*    className={`col-span-2 px-4 py-2 border rounded-md cursor-pointer bg-[#F3F4F6] w-full ${getFieldStyle('institute')}`}*/}
+                        {/*>*/}
+                        {/*    <option value="">🔍 Search & Select University</option>*/}
+                        {/*    {universities.map((uni, index) => (*/}
+                        {/*        <option key={index} value={uni} className="cursor-pointer">*/}
+                        {/*            {uni}*/}
+                        {/*        </option>*/}
+                        {/*    ))}*/}
+                        {/*</select>*/}
                     </div>
                 )}
 
