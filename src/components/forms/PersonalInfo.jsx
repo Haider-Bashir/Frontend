@@ -33,7 +33,7 @@ const PersonalInfo = ({ applicant, fetchApplicant }) => {
             });
 
             if (applicant.photo) {
-                setPreviewImage(`${process.env.REACT_APP_API_URL}/public${applicant.photo}`);
+                setPreviewImage(applicant.photo);
             }
         }
     }, [applicant]);
