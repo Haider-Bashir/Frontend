@@ -224,7 +224,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
 
                         <a
                             type="button"
-                            href={`${process.env.REACT_APP_API_URL}/public${offerLetterFilePath}`}
+                            href={offerLetterFilePath}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"
@@ -249,7 +249,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
                             <span>{confirmationInvoiceFileName}</span>
 
                             <a
-                                href={`${process.env.REACT_APP_API_URL}/public${confirmationInvoiceFilePath}`}
+                                href={confirmationInvoiceFilePath}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"
@@ -294,7 +294,7 @@ const Processing = ({ applicant, fetchApplicant, nextStep, prevStep }) => {
                             <span>{embassyAppointmentFileName}</span>
 
                             <a
-                                href={`${process.env.REACT_APP_API_URL}/public${embassyAppointmentFilePath}`}
+                                href={embassyAppointmentFilePath}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] transition text-white rounded-md"
