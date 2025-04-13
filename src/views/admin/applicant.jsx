@@ -248,6 +248,25 @@ const AdminViewApplicant = () => {
         }
     };
 
+    const handleDeleteApplicant = async () => {
+        const confirmed = window.confirm("Are you sure you want to delete this applicant? This action cannot be undone.");
+        if (!confirmed) return;
+    
+        try {
+            const token = localStorage.getItem("token");
+    
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/applicants/${applicant._id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+    
+            alert("Applicant deleted successfully.");
+            navigate("/admin/applicants");
+        } catch (error) {
+            console.error("❌ Error deleting applicant:", error);
+            alert("Failed to delete applicant. Please try again.");
+        }
+    };
+
 
     if (loading) return <AdminLayout>Loading...</AdminLayout>;
     if (error) return <AdminLayout><p className="text-red-500">{error}</p></AdminLayout>;
@@ -264,13 +283,22 @@ const AdminViewApplicant = () => {
 
                 <div className="flex justify-between items-center">
                     <h1 className="text-2xl font-bold text-[#274E6B] mb-6">Applicant Details</h1>
-                    <button
-                        onClick={() => navigate(`/applicant/${applicant._id}`)}
-                        className="px-4 py-2 bg-[#0B7ABE] hover:bg-[#274E8B] text-white rounded-md"
-                    >
-                        Edit
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => navigate(`/applicant/${applicant._id}`)}
+                            className="px-4 py-2 bg-[#0B7ABE] hover:bg-[#274E8B] text-white rounded-md"
+                        >
+                            Edit
+                        </button>
+                        <button
+                            onClick={handleDeleteApplicant}
+                            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+                        >
+                            Delete
+                        </button>
+                    </div>
                 </div>
+
 
                 <div className="grid grid-cols-3 gap-6">
                     {/* Left Side - Profile Image */}
