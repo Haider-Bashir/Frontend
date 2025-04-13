@@ -278,7 +278,7 @@ const AdminViewApplicant = () => {
                         <h3 className="text-lg font-semibold text-gray-700 mb-2">Profile Picture</h3>
                         {applicant.photo ? (
                             <img
-                                src={`${process.env.REACT_APP_API_URL}/public${applicant.photo}`}
+                                src={applicant.photo}
                                 alt="Applicant"
                                 className="w-40 h-40 object-cover rounded-md border"
                             />
