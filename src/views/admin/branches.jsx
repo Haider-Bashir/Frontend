@@ -116,7 +116,7 @@ const Branches = () => {
                             onClick={() => navigate(`/admin/branches/${branch._id}`)}
                         >
                             <img
-                                src={`${process.env.REACT_APP_API_URL}/public${branch.image}`}
+                                src={branch.image}
                                 alt={branch.name}
                                 className="h-40 w-full object-cover"
                             />
