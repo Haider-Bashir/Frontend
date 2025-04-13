@@ -11,6 +11,9 @@ const Layout = ({ children }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userRole = user?.role || "";
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
@@ -111,16 +114,18 @@ const Layout = ({ children }) => {
                     >
                         Applicants
                     </button>
-                    <button
-                        onClick={()=>navigate("/admin/sub-admins")}
-                        className={`block py-2 px-4 rounded-md w-full text-start ${
-                            location.pathname.startsWith("/admin/sub-admins") || location.pathname.startsWith("/admin/sub-admin") || location.pathname.startsWith("/sub-admin")
-                                ? "bg-[#E8F1F8] text-[#274E6B] font-semibold"
-                                : "hover:bg-[#E8F1F8]"
-                        } transition`}
-                    >
-                        Sub Admins
-                    </button>
+                    {userRole !== "sub-admin" && (
+                        <button
+                            onClick={()=>navigate("/admin/sub-admins")}
+                            className={`block py-2 px-4 rounded-md w-full text-start ${
+                                location.pathname.startsWith("/admin/sub-admins") || location.pathname.startsWith("/admin/sub-admin") || location.pathname.startsWith("/sub-admin")
+                                    ? "bg-[#E8F1F8] text-[#274E6B] font-semibold"
+                                    : "hover:bg-[#E8F1F8]"
+                            } transition`}
+                        >
+                            Sub Admins
+                        </button>
+                        )}
                 </nav>
             </div>
 
