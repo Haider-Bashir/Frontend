@@ -285,7 +285,7 @@ const AdminBranchDetails = () => {
                 <div className="flex bg-white p-6 rounded-md shadow-md mb-6">
                     <div className="w-1/3">
                         <img
-                            src={`${process.env.REACT_APP_API_URL}/public${branchDetails.image}`}
+                            src={branchDetails.image}
                             alt={branchDetails.name}
                             className="w-full h-64 object-cover rounded-md"
                         />
