@@ -382,7 +382,7 @@ const AdminViewApplicant = () => {
                             <li key={index} className="flex justify-between border p-2 rounded-md mb-2 bg-[#F3F4F6]">
                                 <span className="text-gray-700 font-bold">{doc.title}</span>
                                 <a
-                                    href={`${process.env.REACT_APP_API_URL}/public${doc.path}`}
+                                    href={doc.path}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="px-3 py-1 bg-[#0B7ABE] hover:bg-[#274E8B] text-white rounded-md"
