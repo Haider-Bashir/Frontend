@@ -133,6 +133,7 @@ const AdminViewApplicant = () => {
             agreedAmount: applicant.agreement?.agreedAmount,
             agreedAmountInWords: convertNumberToWords(applicant.agreement?.agreedAmount),
             agreedCurrency: applicant.agreement?.agreedCurrency,
+            totalAmount: totalAmount,
         };
 
         setInvoiceDetails(invoiceData);
