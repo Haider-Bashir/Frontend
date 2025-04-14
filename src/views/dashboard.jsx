@@ -120,8 +120,19 @@ const ManagerDashboard = () => {
                 </div>
                 <div className="bg-white p-6 rounded-md shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 className="text-lg font-semibold text-[#274E6B]">Total Payments</h3>
-                    <p className="text-4xl font-bold mt-4 text-gray-800">${stats ? stats.totalPayments : 'Loading...'}</p>
+                    <div className="mt-4 space-y-1">
+                        {stats ? (
+                            stats.paymentsByCurrency.map((payment, index) => (
+                                <p key={index} className="text-2xl font-bold text-gray-800">
+                                    {payment._id}: {payment.total.toLocaleString()}
+                                </p>
+                            ))
+                        ) : (
+                            <p>Loading...</p>
+                        )}
+                    </div>
                 </div>
+
                 <div className="bg-white p-6 rounded-md shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 className="text-lg font-semibold text-[#274E6B]">Applicants by Visa Type</h3>
                     <ul className="mt-2">
